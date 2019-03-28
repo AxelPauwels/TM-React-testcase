@@ -1,0 +1,103 @@
+#DEZE HEEFT NOG GEEN npm install gedaan#
+
+#######################################################################
+# commands to install (run in application folder xxx/xxx/ExamenReact) #
+#######################################################################
+npm install
+npm install http-server -g
+
+
+#############################################################################
+# commands to start project (bv localhost:8080 <portnumber of http-server>) #
+#############################################################################
+npm run build       (terminal 1)
+http-server         (terminal 2)
+
+
+########################################################################
+# normaal deze commands niet (meer) nodig, omdat ze al uitgevoerd zijn #
+########################################################################
+npm init
+npm install react react-dom --save
+npm install webpack --save
+
+
+ ----------------------------------------------------------------------
+| maak deze webpack.config.js aan in “les1” op niveau van package.json |
+ ----------------------------------------------------------------------
+var webpack = require("webpack");
+var path = require("path");
+var DEV = path.resolve(__dirname, "dev");
+var OUTPUT = path.resolve(__dirname, "output");
+var config = {
+entry: DEV + "/app.js",
+output: {
+path: OUTPUT,
+filename: "myCode.js"
+}
+};
+module.exports = config;
+
+
+
+npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save
+ ---------------------------------------------------------------
+| Configureer BABEL in package.json: (add “babel” na “webpack”) |
+ ---------------------------------------------------------------
+"webpack": "^3.10.0"
+},
+"babel": {
+"presets": [
+"es2015",
+"react"
+]
+}
+
+
+ --------------------------------------------------------------------------
+| Configureer BABEL in webpack.config.js: (add “watch” na “output” object) |
+ --------------------------------------------------------------------------
+output: {
+path: OUTPUT,
+filename: "myCode.js"
+},
+watch: true,
+module: {
+loaders: [{
+include: DEV,
+loader: "babel-loader",
+}]
+}
+
+
+
+ --------------------------------------------------------
+| (in package.json bij scripts, volgende lijn toevoegen) |
+ --------------------------------------------------------
+"build": "./node_modules/.bin/webpack --progress --colors --watch"
+
+
+npm install http-server -g      (Eenmalige install)
+npm install axios --save
+
+
+voor asynchroon spinners:
+npm install --save emotion react-emotion babel-plugin-emotion
+npm install react-spinners --save
+
+ --------------------------------------------------------
+| (in package.json bij plugins, volgende lijn toevoegen) |
+ --------------------------------------------------------
+"babel": {
+"presets": [
+"es2015",
+"react"
+],
+"plugins": [
+"emotion"
+]
+}
+
+spinners :
+http://www.davidhu.io/react-spinners/
+https://www.npmjs.com/package/react-spinners
